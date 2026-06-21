@@ -52,7 +52,6 @@ export const Logo: React.FC<LogoProps> = ({ className = "", size = 48 }) => {
           fill="#5fa9c7"
         />
 
-        {/* Stylized 'ppf' letters */}
         {/* Left 'p' */}
         <path
           d="M 25 39 L 25 61.5"
