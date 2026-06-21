@@ -94,6 +94,13 @@ export const Header: React.FC = () => {
               </Link>
 
               <Link
+                to="/report-images"
+                className="text-[13px] font-bold tracking-wider text-primary hover:text-accent transition-colors duration-200"
+              >
+                REPORT IMAGES
+              </Link>
+
+              <Link
                 to="/udyam-certificate"
                 className="text-[13px] font-bold tracking-wider text-primary hover:text-accent transition-colors duration-200"
               >
@@ -157,6 +164,14 @@ export const Header: React.FC = () => {
                 className="text-[15px] font-bold text-primary hover:text-accent transition-colors duration-200 py-1"
               >
                 ANNUAL REPORT
+              </Link>
+
+              <Link
+                to="/report-images"
+                onClick={() => setIsOpen(false)}
+                className="text-[15px] font-bold text-primary hover:text-accent transition-colors duration-200 py-1"
+              >
+                REPORT IMAGES
               </Link>
 
               <Link

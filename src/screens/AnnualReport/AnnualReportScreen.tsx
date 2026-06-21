@@ -1,58 +1,15 @@
-import React, { useEffect, useState, useRef } from "react";
-import mammoth from "mammoth";
+import React from "react";
 import {
   Download,
-  FileText,
-  Loader2,
-  AlertTriangle,
   BookOpen,
   ChevronRight,
-  Printer,
+  ExternalLink,
+  FileText,
 } from "lucide-react";
 
 export const AnnualReportScreen: React.FC = () => {
-  const [htmlContent, setHtmlContent] = useState<string>("");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const fetchAndConvert = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const response = await fetch("/Annual Report PPF.docx");
-        if (!response.ok) {
-          throw new Error(`Failed to load document (HTTP ${response.status})`);
-        }
-        const arrayBuffer = await response.arrayBuffer();
-        const result = await mammoth.convertToHtml(
-          { arrayBuffer },
-          {
-            styleMap: [
-              "p[style-name='Heading 1'] => h1.doc-h1",
-              "p[style-name='Heading 2'] => h2.doc-h2",
-              "p[style-name='Heading 3'] => h3.doc-h3",
-              "b => strong",
-              "i => em",
-            ],
-          }
-        );
-        setHtmlContent(result.value);
-      } catch (err: unknown) {
-        setError(
-          err instanceof Error ? err.message : "Failed to load the annual report document."
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAndConvert();
-  }, []);
-
-  const handlePrint = () => {
-    window.print();
+  const handleOpenNewTab = () => {
+    window.open("/PPF_Annual_Report_2025-26.pdf", "_blank");
   };
 
   return (
@@ -80,17 +37,17 @@ export const AnnualReportScreen: React.FC = () => {
             <a
               href="/PPF_Annual_Report_2025-26.pdf"
               download="PPF_Annual_Report_2025-26.pdf"
-              className="inline-flex items-center gap-2 bg-accent hover:bg-orange-500 text-white font-bold text-[13px] tracking-wider px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all"
+              className="inline-flex items-center gap-2 bg-accent hover:bg-orange-500 text-white font-bold text-[13px] tracking-wider px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all cursor-pointer"
             >
               <Download size={16} />
               Download Annual Report PDF
             </a>
             <button
-              onClick={handlePrint}
+              onClick={handleOpenNewTab}
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-[13px] tracking-wider px-6 py-3 rounded-xl border border-white/15 transition-all cursor-pointer"
             >
-              <Printer size={16} />
-              Print / Save as PDF
+              <ExternalLink size={16} />
+              Open in New Tab
             </button>
           </div>
         </div>
@@ -105,14 +62,13 @@ export const AnnualReportScreen: React.FC = () => {
 
       {/* ── Document Viewer ── */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-md overflow-hidden print:shadow-none print:border-none">
-
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-md overflow-hidden">
           {/* Document top bar */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-[#fcfaf7] print:hidden">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-[#fcfaf7]">
             <div className="flex items-center gap-2.5 text-muted text-[13px]">
               <FileText size={16} className="text-accent" />
-              <span className="font-bold text-primary">Annual Report PPF.docx</span>
-              <span className="text-gray-400">— rendered from Word document</span>
+              <span className="font-bold text-primary">PPF_Annual_Report_2025-26.pdf</span>
+              <span className="text-gray-400">— Official Annual Report PDF</span>
             </div>
             <a
               href="/PPF_Annual_Report_2025-26.pdf"
@@ -123,144 +79,37 @@ export const AnnualReportScreen: React.FC = () => {
             </a>
           </div>
 
-          {/* Content Area */}
-          <div className="px-6 sm:px-12 lg:px-20 py-12">
-            {loading && (
-              <div className="flex flex-col items-center justify-center gap-5 py-24 text-muted">
-                <Loader2 size={36} className="animate-spin text-accent" />
-                <p className="text-[14px] font-medium">Loading Annual Report document…</p>
-              </div>
-            )}
-
-            {error && (
-              <div className="flex flex-col items-center justify-center gap-4 py-24 text-center">
-                <AlertTriangle size={36} className="text-orange-400" />
-                <h3 className="text-primary font-bold text-[18px]">Could not load the document</h3>
-                <p className="text-muted text-[13.5px] max-w-md">{error}</p>
+          {/* PDF Viewer Frame */}
+          <div className="relative w-full" style={{ height: "800px" }}>
+            <iframe
+              src="/PPF_Annual_Report_2025-26.pdf#toolbar=0"
+              width="100%"
+              height="100%"
+              className="border-none"
+              title="PPF Annual Report 2025-26"
+            >
+              <div className="flex flex-col items-center justify-center h-full p-8 text-center bg-[#fcfaf7]">
+                <BookOpen size={48} className="text-gray-400 mb-4" />
+                <p className="text-primary font-bold text-lg mb-2">
+                  PDF Preview Not Available
+                </p>
+                <p className="text-muted text-sm mb-6 max-w-sm">
+                  Your browser does not support inline PDF viewing. Please download
+                  the report to view it.
+                </p>
                 <a
                   href="/PPF_Annual_Report_2025-26.pdf"
-                  download
-                  className="mt-2 inline-flex items-center gap-2 bg-accent hover:bg-orange-500 text-white font-bold text-[13px] px-5 py-2.5 rounded-xl transition-colors"
+                  download="PPF_Annual_Report_2025-26.pdf"
+                  className="inline-flex items-center gap-2 bg-accent hover:bg-orange-500 text-white font-bold text-[13px] px-6 py-3 rounded-xl shadow-lg transition-colors"
                 >
-                  <Download size={15} />
-                  Download PDF instead
+                  <Download size={16} />
+                  Download PDF Report
                 </a>
               </div>
-            )}
-
-            {!loading && !error && (
-              <div
-                ref={contentRef}
-                id="annual-report-content"
-                className="doc-content prose-custom"
-                dangerouslySetInnerHTML={{ __html: htmlContent }}
-              />
-            )}
+            </iframe>
           </div>
         </div>
       </div>
-
-      {/* ── Inline styles for mammoth-rendered document content ── */}
-      <style>{`
-        .doc-content {
-          color: #1e293b;
-          font-family: 'Plus Jakarta Sans', sans-serif;
-          font-size: 15px;
-          line-height: 1.8;
-        }
-        .doc-content h1,
-        .doc-content .doc-h1 {
-          font-family: 'Playfair Display', serif;
-          font-size: 2rem;
-          font-weight: 700;
-          color: #0d233a;
-          margin-top: 2.5rem;
-          margin-bottom: 1rem;
-          border-bottom: 2px solid #ff7a45;
-          padding-bottom: 0.5rem;
-        }
-        .doc-content h2,
-        .doc-content .doc-h2 {
-          font-family: 'Playfair Display', serif;
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: #0d233a;
-          margin-top: 2rem;
-          margin-bottom: 0.75rem;
-        }
-        .doc-content h3,
-        .doc-content .doc-h3 {
-          font-size: 1.15rem;
-          font-weight: 700;
-          color: #ff7a45;
-          margin-top: 1.5rem;
-          margin-bottom: 0.5rem;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-        }
-        .doc-content p {
-          margin-bottom: 1rem;
-          color: #334155;
-        }
-        .doc-content strong {
-          font-weight: 700;
-          color: #0d233a;
-        }
-        .doc-content em {
-          font-style: italic;
-          color: #475569;
-        }
-        .doc-content ul,
-        .doc-content ol {
-          margin: 0.75rem 0 1rem 1.25rem;
-          display: flex;
-          flex-direction: column;
-          gap: 0.4rem;
-        }
-        .doc-content li {
-          color: #334155;
-          padding-left: 0.25rem;
-        }
-        .doc-content table {
-          width: 100%;
-          border-collapse: collapse;
-          margin: 1.5rem 0;
-          font-size: 0.875rem;
-        }
-        .doc-content table th {
-          background: #0d233a;
-          color: white;
-          font-weight: 700;
-          padding: 10px 14px;
-          text-align: left;
-          font-size: 0.8rem;
-          letter-spacing: 0.05em;
-          text-transform: uppercase;
-        }
-        .doc-content table td {
-          padding: 10px 14px;
-          border-bottom: 1px solid #e2e8f0;
-          color: #334155;
-        }
-        .doc-content table tr:nth-child(even) td {
-          background: #f8fafc;
-        }
-        .doc-content img {
-          max-width: 100%;
-          border-radius: 8px;
-          margin: 1rem 0;
-        }
-        .doc-content a {
-          color: #ff7a45;
-          text-decoration: underline;
-        }
-        @media print {
-          .doc-content { font-size: 12pt; }
-          .doc-content h1 { font-size: 18pt; }
-          .doc-content h2 { font-size: 14pt; }
-          .doc-content h3 { font-size: 12pt; }
-        }
-      `}</style>
     </div>
   );
 };

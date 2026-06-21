@@ -5,6 +5,7 @@ import { Footer } from "./components/Footer";
 import { HomeScreen } from "./screens/Home/HomeScreen";
 import { AnnualReportScreen } from "./screens/AnnualReport/AnnualReportScreen";
 import { UdyamCertificateScreen } from "./screens/UdyamCertificate/UdyamCertificateScreen";
+import { ReportImagesScreen } from "./screens/ReportImages/ReportImagesScreen";
 
 const ScrollToTop: React.FC = () => {
 	const { pathname } = useLocation();
@@ -32,6 +33,7 @@ const App: React.FC = () => {
 					<Routes>
 						<Route path="/" element={<HomeScreen />} />
 						<Route path="/annual-report" element={<AnnualReportScreen />} />
+						<Route path="/report-images" element={<ReportImagesScreen />} />
 						<Route path="/udyam-certificate" element={<UdyamCertificateScreen />} />
 					</Routes>
 				</main>

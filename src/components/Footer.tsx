@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Mail, Phone, ArrowUp, FileText, Landmark } from "lucide-react";
+import { MapPin, Mail, Phone, ArrowUp, FileText, Landmark, Image } from "lucide-react";
 import { Logo } from "./Logo";
 
 export const Footer: React.FC = () => {
@@ -25,13 +25,20 @@ export const Footer: React.FC = () => {
             <p className="text-gray-400 text-[14px] leading-relaxed max-w-sm">
               Empowering individuals, strengthening communities, and creating sustainable livelihoods through quality skill development and vocational training since 2024.
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
               <Link
                 to="/annual-report"
                 className="flex items-center gap-1.5 text-[13px] bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white px-3 py-1.5 rounded-lg border border-white/10 transition-colors"
               >
                 <FileText size={15} className="text-accent" />
                 Annual Report
+              </Link>
+              <Link
+                to="/report-images"
+                className="flex items-center gap-1.5 text-[13px] bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white px-3 py-1.5 rounded-lg border border-white/10 transition-colors"
+              >
+                <Image size={15} className="text-accent" />
+                Report Images
               </Link>
               <Link
                 to="/udyam-certificate"
