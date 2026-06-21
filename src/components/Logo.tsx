@@ -46,7 +46,6 @@ export const Logo: React.FC<LogoProps> = ({ className = "", size = 48 }) => {
           fill="none"
         />
 
-        {/* Flag Pole and Flag (Blue) */}
         <line x1="62" y1="26" x2="62" y2="44" stroke="#4a5568" strokeWidth="1.5" />
         <path
           d="M 62 27 C 65 25, 69 29, 72 27 C 74 25.5, 75 27, 75 27 L 75 32 C 75 32, 73 31.5, 71 33 C 68 35, 64 30.5, 62 32 Z"
