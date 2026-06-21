@@ -1009,10 +1009,10 @@ export const HomeScreen: React.FC = () => {
               If you are motivated to teach electricals, retail, textile, soft-skills, or manage operations, send your resume to:
             </p>
             <a
-              href="mailto:uavirender@gmail.com"
+              href="mailto:progresspathfoundation24@gmail.com"
               className="text-[17px] font-bold text-primary hover:text-accent border-b border-primary hover:border-accent pb-0.5 transition-colors"
             >
-              uavirender@gmail.com
+              progresspathfoundation24@gmail.com
             </a>
           </div>
         </div>
