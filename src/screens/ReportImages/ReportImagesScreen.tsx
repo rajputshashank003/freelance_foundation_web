@@ -7,7 +7,7 @@ import {
   AlertTriangle,
   Image as ImageIcon,
   ChevronRight,
-  Printer,
+  ExternalLink,
 } from "lucide-react";
 
 export const ReportImagesScreen: React.FC = () => {
@@ -51,8 +51,8 @@ export const ReportImagesScreen: React.FC = () => {
     fetchAndConvert();
   }, []);
 
-  const handlePrint = () => {
-    window.print();
+  const handleOpenNewTab = () => {
+    window.open("/Annual Report PPF.docx", "_blank");
   };
 
   return (
@@ -79,17 +79,17 @@ export const ReportImagesScreen: React.FC = () => {
             <a
               href="/Annual Report PPF.docx"
               download="Annual_Report_PPF_Images.docx"
-              className="inline-flex items-center gap-2 bg-accent hover:bg-orange-500 text-white font-bold text-[13px] tracking-wider px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all"
+              className="inline-flex items-center gap-2 bg-accent hover:bg-orange-500 text-white font-bold text-[13px] tracking-wider px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all cursor-pointer"
             >
               <Download size={16} />
               Download Document
             </a>
             <button
-              onClick={handlePrint}
+              onClick={handleOpenNewTab}
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-[13px] tracking-wider px-6 py-3 rounded-xl border border-white/15 transition-all cursor-pointer"
             >
-              <Printer size={16} />
-              Print / Save as PDF
+              <ExternalLink size={16} />
+              Open in New Tab
             </button>
           </div>
         </div>
