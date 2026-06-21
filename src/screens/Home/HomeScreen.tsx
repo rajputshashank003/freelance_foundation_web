@@ -161,6 +161,25 @@ export const HomeScreen: React.FC = () => {
         </div>
       </section>
 
+      {/* COLLABORATIONS SECTION */}
+      <section className="py-14 bg-white border-b border-[#0d233a]/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-accent text-[12px] font-extrabold tracking-wider uppercase">
+            OUR COLLABORATIONS
+          </span>
+          <h2 className="text-[24px] sm:text-[28px] text-primary font-serif font-bold mt-2 mb-8">
+            Trusted by & Collaborating with Leading Institutions
+          </h2>
+          <div className="flex justify-center items-center px-4">
+            <img
+              src="/all_logos_combined.png"
+              alt="Our Collaborations and Partnerships"
+              className="max-w-full h-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300 max-h-[140px] sm:max-h-[180px]"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* 3. ABOUT US SECTION */}
       <section id="about" className="py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
